@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@using ProductDatabase.Entity
+@model IEnumerable<ProductDatabase.Entity.Product>
+
+@using (Html.BeginForm("Sort", "Home"))
+{
+@Html.TextBox("category");
+<input type="submit" value="Поиск по категории" />
+}
+
+@using (Html.BeginForm("ProductAdd", "Home"))
+{
+    @Html.Label("Имя")
+    @Html.TextBox("Name");
+    @Html.Label("Категория")
+    @Html.TextBox("Category");
+    <input type="submit" value ="Добавить продукт"/>
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
+                        <tr>
+                            <td>
+                                @m.Id
+                            </td>
+                            <td>
+                                @m.Name
+                            </td>
+                            <td>
+                                @m.Category
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
